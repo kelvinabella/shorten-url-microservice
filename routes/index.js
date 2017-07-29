@@ -1,48 +1,46 @@
+var mongodb = require('mongodb')
+
+//We need to work with "MongoClient" interface in order to connect to a mongodb server.
+var MongoClient = mongodb.MongoClient
+
+// Connection URL. This is where your mongodb server is running.
+// SET MONGOLAB_URI=mongodb://kelvinabella:password@ds125053.mlab.com:25053/freecodecamp
+var url = process.env.MONGOLAB_URI
+
+
 exports.index = function(req, res){
   res.render('index')
 }
 
-exports.timestamp = function(req, res){
-  var params = req.params.date
-  var date = new Date(isNaN(params) ?  params : Number(params)*1000)
-  var unix, natural, dateResponse
-  var monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ]
+exports.retrieveUrl = function (req, res) {
 
-  if(date instanceof Date && !isNaN(date.getTime())){
-    unix = isNaN(params) ?
-      Date.UTC(date.getFullYear(),
-        date.getMonth(),
-        date.getDate(),
-        date.getHours(),
-        date.getMinutes(),
-        date.getSeconds())/1000
-      : Number(params)
-    natural = monthNames[date.getMonth()]
-      + " "
-      + date.getDate()
-      + ", "
-      + date.getFullYear()
+  let url = console.log(req.url.slice(1))
+
+  // Use connect method to connect to the Server
+  MongoClient.connect(url, function (err, db) {
+  if (err) {
+    console.log('Unable to connect to the mongoDB server. Error:', err)
   } else {
-    unix = natural = null
-  }
+    console.log('Connection established to', url);
 
-  dateResponse = {
-    unix: unix,
-    natural: natural
-  }
+    db.collection('inventory').insertOne({
+      item: "canvas",
+      qty: 100,
+      tags: ["cotton"],
+      size: { h: 28, w: 35.5, uom: "cm" }
+    })
+    .then(function(result) {
+      // process result
+    })
 
-  res.json(dateResponse)
+    //Close connection
+    db.close();
+  }
+});
+
+  res.send(req.toString())
+}
+
+exports.noRoute = function (req, res) {
+ res.json({"error":"This url is not on the database."})
 }

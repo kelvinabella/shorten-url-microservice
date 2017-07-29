@@ -1,9 +1,9 @@
 {
   "name": "timestamp-microservice",
   "version": "1.0.0",
-  "description": "freecodecamp api project for timestamp microservice",
+  "description": "freecodecamp api project for shorten url microservice",
   "main": "app.js",
-  "repository": "https://github.com/kelvinabella/timestamp-microservice",
+  "repository": "https://github.com/kelvinabella/shorten-url-microservice",
   "author": "Kelvin Abella",
   "license": "MIT",
   "scripts": {
@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.15.3",
     "express-react-views": "^0.10.2",
+    "mongodb": "^2.2.30",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
