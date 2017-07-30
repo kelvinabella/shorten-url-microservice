@@ -10,7 +10,7 @@ require('dotenv').config()
 var url = process.env.MONGOLAB_URI
 
 exports.index = function(req, res){
-  res.render('index')
+  res.render('index', {host: `${req.protocol}://${req.get("host")}`})
 }
 
 exports.retrieveUrl = function (req, res) {

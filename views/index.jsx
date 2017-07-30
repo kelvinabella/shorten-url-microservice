@@ -15,17 +15,17 @@ class Index extends React.Component {
             </ul>
           </blockquote>
           <h3>Example creation usage:</h3>
-          <code>http://localhost:3000/https://www.google.com</code>
+          <code>{this.props.host}/https://www.google.com</code>
           <br/>
-          <code>http://localhost:3000/http://foo.com:80</code>
+          <code>{this.props.host}/http://foo.com:80</code>
           <h3>Example creation output</h3>
           <code>
             {
-              '{"original_url":"http://foo.com:80", "short_url":"https://localhost.com/8170"}'
+              `{"original_url":"http://foo.com:80", "short_url":"${this.props.host}/8170"}`
             }
           </code>
           <h3>Usage:</h3>
-          <code>https://localhost:3000/2871</code>
+          <code>{this.props.host}/2871</code>
           <h3>Will redirect to:</h3>
           <code>https://www.google.com/</code>
         </div>
