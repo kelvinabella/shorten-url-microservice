@@ -14,12 +14,9 @@ app.use(function (err, req, res, next) {
 
 app.get('/', require('./routes').index)
 
-var regex = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
-
-app.get(regex, require('./routes').retrieveUrl)
+app.get(/(http(s)?:\/\/)?((\w+\.){1,})([a-z]{2,3})((\/\w+){1,})?$/, require('./routes').retrieveUrl)
 
 app.get('*', require('./routes').noRoute)
-
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')

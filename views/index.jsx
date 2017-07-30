@@ -15,9 +15,9 @@ class Index extends React.Component {
             </ul>
           </blockquote>
           <h3>Example creation usage:</h3>
-          <code>https://localhost/new/https://www.google.com</code>
+          <code>http://localhost:3000/https://www.google.com</code>
           <br/>
-          <code>https://localhost/new/http://foo.com:80</code>
+          <code>http://localhost:3000/http://foo.com:80</code>
           <h3>Example creation output</h3>
           <code>
             {
@@ -25,7 +25,7 @@ class Index extends React.Component {
             }
           </code>
           <h3>Usage:</h3>
-          <code>https://localhost/2871</code>
+          <code>https://localhost:3000/2871</code>
           <h3>Will redirect to:</h3>
           <code>https://www.google.com/</code>
         </div>

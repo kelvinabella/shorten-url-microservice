@@ -11,6 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 ```
 git clone https://github.com/kelvinabella/shorten-url-microservice.git
 cd shorten-url-microservice
+create .env file and connect to your mongodb
 yarn install
 yarn start
 ```
@@ -26,16 +27,16 @@ When I visit that shortened URL, it will redirect me to my original link.
 
 ```
 Usage:
-https://little-url.herokuapp.com/new/https://www.google.com
-https://little-url.herokuapp.com/new/http://foo.com:80
+http://localhost:3000/https://www.google.com
+http://localhost:3000/http://foo.com:80
 
 Example output:
-{ "original_url":"http://foo.com:80", "short_url":"https://little-url.herokuapp.com/8170" }
+{ "original_url":"http://foo.com:80", "short_url":"http://localhost:3000/8170" }
 ```
 
 ```
 Usage:
-https://little-url.herokuapp.com/2871
+https://localhost/2871
 
 Will redirect to:
 https://www.google.com/
