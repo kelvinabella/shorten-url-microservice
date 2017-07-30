@@ -49,13 +49,13 @@ exports.retrieveUrl = function (req, res) {
                   jsonResponse = {"original_url": reqUrl,"short_url":`${req.protocol}://${req.get("host")}/${randStr}`}
                 }
                 //we put response here since the function above is async
-                res.send(jsonResponse)
+                res.json(jsonResponse)
             })
           } else {
             //short url is already in dataase
             jsonResponse = {"original_url": reqUrl,"short_url":`${req.protocol}://${req.get("host")}/${docs[0].shortUrl}`}
             //we put response here since the function above is async
-            res.send(jsonResponse)
+            res.json(jsonResponse)
           }
 
         //Close connection
@@ -64,6 +64,34 @@ exports.retrieveUrl = function (req, res) {
     }
   })
 
+}
+
+exports.redirectLink = function (req, res) {
+  MongoClient.connect(url, function (err, db) {
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err)
+    } else {
+      console.log('Connection established to', url)
+
+      let collection = db.collection("urls")
+
+      collection.find({ "shortUrl": req.params.id }).toArray((err, docs) => {
+
+          if (docs.length !== 0) {
+
+            let rUrl = docs[0].url
+            //redirects to selected url
+            res.redirect(301, rUrl.search("http") > 0 ? rUrl : `${req.protocol}://${rUrl}`)
+          } else {
+            //we put response here since the function above is async
+            res.json({"error":"This url is not on the database."})
+          }
+
+        //Close connection
+        db.close()
+      })
+    }
+  })
 }
 
 exports.noRoute = function (req, res) {

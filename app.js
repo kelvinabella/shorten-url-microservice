@@ -14,7 +14,11 @@ app.use(function (err, req, res, next) {
 
 app.get('/', require('./routes').index)
 
-app.get(/(http(s)?:\/\/)?((\w+\.){1,})([a-z]{2,3})((\/\w+){1,})?$/, require('./routes').retrieveUrl)
+app.get(/^\/(http(s)?\:\/\/)?((\w+\.){1,})([a-z]{2,3})((\/\w+){1,})?(?:\/(?=$))?$/ig, require('./routes').retrieveUrl)
+
+//^https\:\/\/ffffff(?:\/(?=$))?$/i
+//((\w+\.){1,})([a-z]{2,3})((\/\w+){1,})?
+app.get("/:id(\\w{5})", require('./routes').redirectLink)
 
 app.get('*', require('./routes').noRoute)
 
