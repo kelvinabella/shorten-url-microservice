@@ -1,6 +1,6 @@
 # Timestamp Microservice
 
-Full stack JavaScript service that will give a shortened URL in the JSON response. A [FreeCodeCamp](https://www.freecodecamp.org/challenges/timestamp-microservice) project.
+Full stack JavaScript service that will give a shortened URL in the JSON response. A [FreeCodeCamp](https://www.freecodecamp.org/challenges/url-shortener-microservice) project.
 
 ## Getting Started
 
