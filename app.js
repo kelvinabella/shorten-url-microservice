@@ -14,7 +14,7 @@ app.use(function (err, req, res, next) {
 
 app.get('/', require('./routes').index)
 
-app.get(/^\/(http(s)?\:\/\/)?((\w+\.){1,})([a-z]{2,3})(\:\d+)?((\/\w+){1,})?(?:\/(?=$))?$/ig, require('./routes').retrieveUrl)
+app.get(/^(\/)?(http(s)?\:\/\/)?((\w+\.){1,})([a-z]{2,3})(\:\d+)?((\/\w+){1,})?(?:\/(?=$))?$/ig, require('./routes').retrieveUrl)
 
 app.get("/:id(\\w{5})", require('./routes').redirectLink)
 

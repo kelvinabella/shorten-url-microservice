@@ -28,7 +28,7 @@ exports.retrieveUrl = function (req, res) {
     if (err) {
       console.log('Unable to connect to the mongoDB server. Error:', err)
     } else {
-      console.log('Connection established to', url)
+      console.log('Retrieve: Connection established to', url)
 
       let collection = db.collection("urls")
 
@@ -71,7 +71,7 @@ exports.redirectLink = function (req, res) {
     if (err) {
       console.log('Unable to connect to the mongoDB server. Error:', err)
     } else {
-      console.log('Connection established to', url)
+      console.log('Redirect: Connection established to', url)
 
       let collection = db.collection("urls")
 
@@ -81,7 +81,7 @@ exports.redirectLink = function (req, res) {
 
             let rUrl = docs[0].url
             //redirects to selected url
-            res.redirect(301, rUrl.search("http") > 0 ? rUrl : `${req.protocol}://${rUrl}`)
+            res.redirect(rUrl.includes("http")? rUrl : `${req.protocol}://${rUrl}`)
           } else {
             //we put response here since the function above is async
             res.json({"error":"This url is not on the database."})
