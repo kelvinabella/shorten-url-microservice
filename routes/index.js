@@ -94,6 +94,6 @@ exports.redirectLink = function (req, res) {
   })
 }
 
-exports.noRoute = function (req, res) {
- res.json({"error":"Wrong url format, make sure you have a valid protocol and real site."})
+exports.noRoute = function (req, res, next) {
+ res.status(404).json({"error":"Wrong url format, make sure you have a valid protocol and real site."})
 }
