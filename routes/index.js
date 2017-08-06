@@ -28,7 +28,7 @@ exports.retrieveUrl = function (req, res) {
     if (err) {
       console.log('Unable to connect to the mongoDB server. Error:', err)
     } else {
-      console.log('Retrieve: Connection established to', url)
+      console.log('Retrieve: Connection established')
 
       let collection = db.collection("urls")
 
@@ -71,7 +71,7 @@ exports.redirectLink = function (req, res) {
     if (err) {
       console.log('Unable to connect to the mongoDB server. Error:', err)
     } else {
-      console.log('Redirect: Connection established to', url)
+      console.log('Redirect: Connection established')
 
       let collection = db.collection("urls")
 
